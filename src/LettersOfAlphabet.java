@@ -17,17 +17,24 @@ public class LettersOfAlphabet {
     }
 
     private static boolean checkAllAlphabets(String str) {
-        boolean result=true;
-        for(int i=0;i<str.length();i++)
-        {
-            char ch=str.charAt(i);
-            if(!((ch>=97 && ch<=122) || (ch>=65 && ch<=90)))
-            {
-                result=false;
-                break;
+        int index = 0;
+        boolean[] count = new boolean[26];
+
+        for (int i = 0; i < str.length(); i++) {
+            if ('a' <= str.charAt(i) && str.charAt(i) <= 'z') {
+                index = str.charAt(i) - 'a';
+            } else if ('A' <= str.charAt(i) && str.charAt(i) <= 'Z') {
+                index = str.charAt(i) - 'A';
+            }
+            count[index] = true;
+        }
+
+        for (int i = 0; i < 26; i++) {
+            if (!count[i]) {
+                return false;
             }
         }
-        return result;
+        return true;
     }
 }
 //Time Complexity :- O(N)
